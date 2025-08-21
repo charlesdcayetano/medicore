@@ -11,7 +11,7 @@ return new class extends Migration {
       $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
       $table->foreignId('appointment_id')->nullable()->constrained()->nullOnDelete();
       $table->decimal('total_amount', 12, 2)->default(0);
-      $table->enum('status', ['Unpaid','Partially Paid','Paid','Voided'])->default('Unpaid');
+      $table->enum('status',['Pending','Unpaid','Partially Paid','Paid','Voided'])->default('Pending');
       $table->date('due_date')->nullable();
       $table->timestamps();
       $table->index(['patient_id','status']);

@@ -10,6 +10,7 @@ return new class extends Migration {
       $table->id();
       $table->string('first_name');
       $table->string('last_name');
+      $table->string('full_name')->nullable(); // <-- Add ->nullable() here
       $table->date('date_of_birth')->nullable();
       $table->enum('gender', ['Male','Female','Other'])->nullable();
       $table->string('contact_number', 30)->nullable();

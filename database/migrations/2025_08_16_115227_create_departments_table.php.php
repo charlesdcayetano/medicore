@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
   public function up(): void {
     Schema::create('departments', function (Blueprint $table) {
-      $table->id();
-      $table->string('name')->unique();
-      $table->string('code', 20)->unique();
-      $table->timestamps();
+        $table->id();
+        $table->string('name');
+        $table->string('code')->nullable(); // <-- Add ->nullable() here
+        $table->timestamps();
     });
   }
   public function down(): void { Schema::dropIfExists('departments'); }

@@ -9,14 +9,9 @@ class DepartmentSeeder extends Seeder
 {
     public function run(): void
     {
-        $data = [
-          ['name'=>'Emergency','code'=>'ER'],
-          ['name'=>'Cardiology','code'=>'CARD'],
-          ['name'=>'Pediatrics','code'=>'PEDS'],
-          ['name'=>'General Surgery','code'=>'SURG'],
-        ];
-        foreach ($data as $d) {
-          Department::firstOrCreate(['code'=>$d['code']], $d);
-        }
-    }
-}
+        $departments = ['Cardiology', 'Pediatrics', 'Emergency'];
+
+foreach ($departments as $dept) {
+    Department::updateOrCreate(['name' => $dept]);
+}}
+};

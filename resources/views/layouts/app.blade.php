@@ -43,7 +43,8 @@
   <div class="row">
     <aside class="col-lg-2 sidebar p-3">
       <div class="list-group">
-        <a class="list-group-item list-group-item-action {{ request()->routeIs('dashboard') ? 'active' : '' }}" 
+        <a onclick="window.location=this.href" 
+           class="list-group-item list-group-item-action {{ request()->routeIs('dashboard') ? 'active' : '' }}" 
            href="{{ route('dashboard') }}">
           <i class="fas fa-tachometer-alt me-2"></i>
           Dashboard
@@ -51,56 +52,66 @@
 
         @auth
         @if(in_array(auth()->user()->role,['Admin','Staff']))
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('patients.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('patients.*') ? 'active' : '' }}" 
              href="{{ route('patients.index') }}">
             <i class="fas fa-user-injured me-2"></i>
             Patients
           </a>
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('appointments.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('appointments.*') ? 'active' : '' }}" 
              href="{{ route('appointments.index') }}">
             <i class="fas fa-calendar-check me-2"></i>
             Appointments
           </a>
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('billings.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('billings.*') ? 'active' : '' }}" 
              href="{{ route('billings.index') }}">
             <i class="fas fa-file-invoice-dollar me-2"></i>
             Billing
           </a>
         @endif
         @if(in_array(auth()->user()->role,['Admin','Doctor']))
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('medical-records.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('medical-records.*') ? 'active' : '' }}" 
              href="{{ route('medical-records.index') }}">
             <i class="fas fa-notes-medical me-2"></i>
             Medical Records
           </a>
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('prescriptions.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('prescriptions.*') ? 'active' : '' }}" 
              href="{{ route('prescriptions.index') }}">
             <i class="fas fa-prescription-bottle-medical me-2"></i>
             Prescriptions
           </a>
         @endif
         @if(auth()->user()->role==='Admin')
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('departments.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('departments.*') ? 'active' : '' }}" 
              href="{{ route('departments.index') }}">
             <i class="fas fa-building me-2"></i>
             Departments
           </a>
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('rooms.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('rooms.*') ? 'active' : '' }}" 
              href="{{ route('rooms.index') }}">
             <i class="fas fa-bed me-2"></i>
             Rooms
           </a>
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('inventory.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('inventory.*') ? 'active' : '' }}" 
              href="{{ route('inventory.index') }}">
             <i class="fas fa-pills me-2"></i>
             Pharmacy
           </a>
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('ambulances.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('ambulances.*') ? 'active' : '' }}" 
              href="{{ route('ambulances.index') }}">
             <i class="fas fa-ambulance me-2"></i>
             Ambulances
           </a>
-          <a class="list-group-item list-group-item-action {{ request()->routeIs('users.*') ? 'active' : '' }}" 
+          <a onclick="window.location=this.href" 
+             class="list-group-item list-group-item-action {{ request()->routeIs('users.*') ? 'active' : '' }}" 
              href="{{ route('users.index') }}">
             <i class="fas fa-users me-2"></i>
             Users
@@ -133,6 +144,18 @@
     </main>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.Echo) {
+    window.Echo.private('App.Models.User.{{ auth()->id() }}')
+      .notification((n) => {
+        // super simple toast
+        alert((n.title ?? 'Notification') + "\n" + (n.message ?? ''));
+      });
+  }
+});
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

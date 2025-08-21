@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Listeners\LogSuccessfulLogin;
+use App\Listeners\LogLogout;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -15,10 +17,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-    ];
+    'Illuminate\Auth\Events\Login' => [
+        \App\Listeners\LogSuccessfulLogin::class,
+    ],
+    'Illuminate\Auth\Events\Logout' => [
+        \App\Listeners\LogLogout::class,
+    ],
+];
+
+    
 
     /**
      * Register any events for your application.

@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.js"],"names":["window","Alpine","start"],"mappings":";;AAAA;;AACA;;AAEA;;;;AAEAA,MAAM,CAACC,MAAP,GAAgBA,oBAAhB;;AAEAA,qBAAOC,KAAP","sourcesContent":["import './bootstrap';\nimport 'bootstrap';\n\nimport Alpine from 'alpinejs';\n\nwindow.Alpine = Alpine;\n\nAlpine.start();\n"],"file":"app.dev.js"}

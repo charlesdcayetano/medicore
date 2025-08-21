@@ -41,7 +41,7 @@
                         <!-- Footer -->
                         <div class="text-center mt-4">
                             <small class="text-muted">
-                                &copy; {{ date('Y') }} MediCore. All rights reserved.
+                                &copy; {{ date('Y') }} MediCore. All rights reserved. 2025
                             </small>
                         </div>
                     </div>

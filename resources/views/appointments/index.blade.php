@@ -28,5 +28,19 @@
   </td>
 </tr>
 @endforeach</tbody></table></div>
+
 {{ $appointments->links() }}
+<a href="{{ route('appointments.export', ['from' => '2025-08-01', 'to' => '2025-08-20']) }}" class="btn btn-success">
+    Export to Excel
+</a>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.querySelector('input[name="date"]');
+    dateInput.addEventListener('change', function() {
+      // Logic to filter appointments by selected date
+      const url = new URL(window.location.href);
+      url.searchParams.set('date', this.value);
+      window.location.href = url.toString();
+    });
+  });
 @endsection

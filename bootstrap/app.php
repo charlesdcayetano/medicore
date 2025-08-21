@@ -15,6 +15,12 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
+// $app->withMiddleware(function ($middleware) {
+//     $middleware->alias([
+//         'role' => \App\Http\Middleware\RoleMiddleware::class,
+//     ]);
+// });
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
@@ -41,6 +47,7 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
@@ -52,4 +59,6 @@ $app->singleton(
 |
 */
 
+
 return $app;
+
